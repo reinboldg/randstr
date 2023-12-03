@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "$1" | grep -E '^[0-9]{1,2}$' >> /dev/null 2>&1
+
+if [ $? = 0 ]
+then
+  width=$1
+else
+  width=8
+fi
+
+export LC_ALL=3D
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $width | head -n 1
